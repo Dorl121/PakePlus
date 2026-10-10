@@ -24,3 +24,13 @@ window.open = function (url, target, features) {
 }
 
 document.addEventListener('click', hookClick, { capture: true })
+
+const { invoke } = window.__TAURI__.core
+
+if ('__TAURI__' in window) {
+    await invoke('download_file', {
+        url: 'https://www.baidu.com/img/flexible/logo/pc/result.png',
+        savePath: 'test.png',
+        fileId: 'test',
+    })
+}
